@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+  <body>
+<h2>Encoder Code(Verilog)</h2>
+module haming2(in,out);<br><br>
+input [6:0]in;<br><br>
+output [10:0]out;<br>
+reg [10:0]out;<br>
+always@(in)<br>
+begin<br>
+out[0]= (in[0]^ in[1] ^ in[3] ^ in[4] ^ in[6]);<br>
+out[1]= (in[0]^ in[2) ^ in[3] ^ in[5] ^  in[6]);<br>
+out[3]= (in[1]^ in[2] ^ in[3]);<br>
+out[7]= (in[4] ^ in[5] ^ in[6]);<br>
+out[2]= (in[0]);<br>
+out[4]= (in[1]);<br>
+out[5]= (in[2]);<br>
+out[6]= (in[3]);<br>
+out[8]= (in[4]);<br>
+out[9]= (in[5]);<br>
+out[10]= (in[6]);<br>
+end<br>
+endmodule;<br>
+<h2>Decoder Code(Verilog)</h2>  
+module decode(a,y);<br>
+input [10:0]a;<br>
+output [10:0]y;<br>
+reg [10:0]y;<br>
+reg [10:0]x;<br>
+reg r1, r2, r3, r4;<br>
+integer n;<br>
+always@(a)<br>
+begin<br>
+r1= (a[0]^a[2]^a[4]^a[6]^a[8]);<br>
+r2= (a[1]^a[2]^a[5]^ a[6]^a[9]^a[10]);<br>
+r3= (a[3]^a[4]^a[5]^a[6]);<br>
+r4= (a[7]^a[8]^a[9]^a[10]);<br>
+n={r4, r3, r2, r1};<br>
+x=a;<br>
+x[n-1]= ~x[n-1];<br>
+y=x;<br>
+end<br>
+endmodule;<br>
+
+   </body>
+ </html>
